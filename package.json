@@ -15,7 +15,7 @@
     "eslint-vitest-rule-tester": "^0.6.1",
     "eslint": "^9.14.0",
     "prettier": "^3.3.2",
-    "typescript": "~5.5.2",
+    "typescript": "~5.6.3",
     "vitest": "^2.1.4"
   },
   "peerDependencies": {
