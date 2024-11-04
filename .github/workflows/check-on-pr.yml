@@ -43,6 +43,9 @@ jobs:
       - name: Generate docs
         run: pnpm run gen:docs
 
+      - name: Format docs
+        run: pnpm prettier --write "**/*.md"
+
       - name: Commit docs changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
