@@ -4,7 +4,7 @@ Enforce request prefix for React Query hooks.
 
 ## Rule Details
 
-This rule enforces that all React Query hooks (useQuery, useMutation, useInfiniteQuery) should be prefixed with 'request'.
+This rule enforces that all React Query hooks (useQuery, useMutation, useInfiniteQuery) should be assigned to a request-prefixed variable.
 
 ### ❌ Incorrect
 
@@ -16,6 +16,8 @@ const createPost = useMutation({
 });
 
 const updatePost = api.post.update.useMutation();
+
+const { data, isLoading } = api.post.getAll.useQuery();
 ```
 
 ### ✅ Correct
@@ -28,4 +30,6 @@ const requestCreatePost = useMutation({
 });
 
 const requestUpdatePost = api.post.update.useMutation();
+
+const requestGetAllPosts = api.post.getAll.useQuery();
 ```
