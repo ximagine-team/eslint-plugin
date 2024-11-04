@@ -19,3 +19,5 @@ export default defineConfig({
   configs: (p) => [p.js, p.ts, p.vitest, ximagine.configs.recommended],
 });
 ```
+
+## Rules
