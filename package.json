@@ -6,14 +6,16 @@
     "lint:fix": "pnpm lint --fix",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "test": "vitest"
+    "test": "vitest",
+    "gen:docs": "tsx scripts/gen-docs.ts"
   },
   "devDependencies": {
+    "@types/node": "^22.8.7",
     "@typescript-eslint/typescript-estree": "^8.12.0",
     "@typescript-eslint/utils": "^8.12.0",
     "@ximagine/eslint-config": "npm:@jsr/ximagine__eslint-config@^0.1.1",
-    "eslint-vitest-rule-tester": "^0.6.1",
     "eslint": "^9.14.0",
+    "eslint-vitest-rule-tester": "^0.6.1",
     "prettier": "^3.3.2",
     "typescript": "~5.5.2",
     "vitest": "^2.1.4"

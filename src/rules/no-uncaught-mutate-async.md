@@ -1,6 +1,11 @@
 # no-uncaught-mutate-async
 
-Enforce wrapping React Query mutateAsync calls in try-catch blocks to ensure proper error handling.
+Enforce wrapping React Query mutateAsync calls in try-catch blocks.
+
+✅ This rule is _enabled_ in the `recommended` [config](https://github.com/ximagine-ai/eslint-plugin#configs).
+
+<!-- end auto-generated rule header -->
+<!-- Do not manually modify this header. Run: `pnpm run gen:docs` -->
 
 ## Rule Details
 
