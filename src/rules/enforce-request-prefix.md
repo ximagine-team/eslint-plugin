@@ -2,6 +2,13 @@
 
 Enforce request prefix for React Query hooks.
 
+✅ This rule is _enabled_ in the `recommended` [config](https://github.com/ximagine-ai/eslint-plugin#configs).
+
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
+<!-- Do not manually modify this header. Run: `pnpm run gen:docs` -->
+
 ## Rule Details
 
 This rule enforces that all React Query hooks (useQuery, useMutation, useInfiniteQuery) should be assigned to a request-prefixed variable.

@@ -1,6 +1,11 @@
 # no-unsafe-type-assertion
 
-Enforce safe type assertions by disallowing `as unknown as` or `as any as` patterns unless properly documented.
+Disallow type assertions through unknown/any without documentation.
+
+✅ This rule is _enabled_ in the `recommended` [config](https://github.com/ximagine-ai/eslint-plugin#configs).
+
+<!-- end auto-generated rule header -->
+<!-- Do not manually modify this header. Run: `pnpm run gen:docs` -->
 
 ## Rule Details
 
