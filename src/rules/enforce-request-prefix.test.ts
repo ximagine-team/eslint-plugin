@@ -85,7 +85,7 @@ runTest({
       output: $`
         const { data, isLoading } = api.post.getAll.useQuery();
       `,
-      errors: [{ messageId: "enforceRequestPrefix" }],
+      errors: [{ messageId: "enforceRequestPrefixDestructured" }],
     },
   ],
 });
