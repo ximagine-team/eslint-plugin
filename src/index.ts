@@ -1,15 +1,13 @@
 import type { Linter } from "eslint";
 
-import type { Plugin, RuleSet } from "./types";
-
 import { rules } from "./rules";
-
-export const pluginName = "ximagine";
+import { pluginName, type RuleSet, type XimaginePlugin } from "./types";
 
 /**
- * Custom ESLint plugin
+ * Ximagine ESLint plugin
+ * @see https://github.com/ximagine-ai/eslint-plugin
  */
-const plugin: Plugin = {
+const plugin: XimaginePlugin = {
   meta: {
     name: pluginName,
   },
