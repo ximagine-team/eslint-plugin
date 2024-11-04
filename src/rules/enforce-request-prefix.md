@@ -9,14 +9,17 @@ This rule enforces that all React Query hooks (useQuery, useMutation, useInfinit
 ### ❌ Incorrect
 
 ```ts
-const getAllPosts = api.post.getAll.useQuery();
-
+// Vanilla usage
 const createPost = useMutation({
   mutationFn: (data) => axios.post("/post", data),
 });
 
+// tRPC usage
+const getAllPosts = api.post.getAll.useQuery();
+
 const updatePost = api.post.update.useMutation();
 
+// Direct destructuring is not allowed
 const { data, isLoading } = api.post.getAll.useQuery();
 ```
 
@@ -30,6 +33,4 @@ const requestCreatePost = useMutation({
 });
 
 const requestUpdatePost = api.post.update.useMutation();
-
-const requestGetAllPosts = api.post.getAll.useQuery();
 ```

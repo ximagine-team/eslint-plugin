@@ -27,5 +27,3 @@ const fn = () => 42;
 const fn = (a: number): number => a + 42;
 const fn = async () => Promise.resolve(42);
 ```
-
-This rule is fixable - it will automatically convert arrow functions with a single return statement to use expression syntax.
