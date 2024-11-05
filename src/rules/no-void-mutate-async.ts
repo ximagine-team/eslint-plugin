@@ -15,6 +15,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
     docs: {
       description:
         "Disallow using void operator with React Query mutateAsync calls",
+      category: "react-query",
     },
     fixable: "code",
     schema: [],
