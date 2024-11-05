@@ -6,6 +6,8 @@ Enforce destructuring function parameters in the function body.
 
 🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
 
+📋 This rule belongs to the `code-style` [category](../../README.md#code-style).
+
 <!-- end auto-generated rule header -->
 <!-- Do not manually modify this header. Run: `pnpm run gen:docs` -->
 

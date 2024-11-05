@@ -15,6 +15,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
     docs: {
       description:
         "Prefer one-line arrow function expressions over block body when function only has a single return statement",
+      category: "code-style",
     },
     fixable: "code",
     schema: [],

@@ -16,6 +16,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
     docs: {
       description:
         "Enforce destructuring function parameters in the function body",
+      category: "code-style",
     },
     fixable: "code",
     schema: [

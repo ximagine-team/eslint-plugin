@@ -6,6 +6,8 @@ Enforce request prefix for React Query hooks.
 
 🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
 
+📋 This rule belongs to the `react-query` [category](../../README.md#react-query).
+
 <!-- end auto-generated rule header -->
 <!-- Do not manually modify this header. Run: `pnpm run gen:docs` -->
 

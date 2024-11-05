@@ -1,5 +1,6 @@
 import type { RuleModule } from "src/utils/create-rule";
 
+import { groupBy, kebabCase, startCase } from "es-toolkit";
 import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { pluginName } from "src/types";
@@ -10,6 +11,8 @@ import { rules } from "../src/rules";
 const recommendedRules = new Set(
   Object.keys(plugin.configs.recommended.rules!),
 );
+
+const DEFAULT_CATEGORY_NAME = "general";
 
 function generateRuleHeader(ruleName: string) {
   const rulesRecord = rules as Record<string, RuleModule<unknown[]>>;
@@ -51,7 +54,11 @@ function generateRuleHeader(ruleName: string) {
     );
   }
 
+  const category = meta.docs.category ?? DEFAULT_CATEGORY_NAME;
+  // Add category info
   lines.push(
+    `📋 This rule belongs to the \`${category}\` [category](../../README.md#${kebabCase(category)}).`,
+    "",
     "<!-- end auto-generated rule header -->",
     "<!-- Do not manually modify this header. Run: `pnpm run gen:docs` -->",
     "",
@@ -91,43 +98,64 @@ function updateRuleDoc(ruleName: string) {
 function generateRulesTable() {
   const rulesRecord = rules as Record<string, RuleModule<unknown[]>>;
 
-  const tableHeader = [
-    "| Name | Description | 💼 | 🔧 |",
-    "| :--- | :---------- | :- | :- |",
-  ];
+  // Group rules by category
+  const rulesByCategory = groupBy(
+    Object.entries(rulesRecord),
+    (rule) => rule[1].meta?.docs?.category ?? DEFAULT_CATEGORY_NAME,
+  );
 
-  const tableRows = Object.entries(rulesRecord).map(([ruleName, rule]) => {
-    const { meta } = rule;
-    if (!meta?.docs) {
-      throw new Error(`Docs meta not found for rule ${ruleName}`);
-    }
+  const generateTable = (rules: [string, RuleModule<unknown[]>][]) => {
+    const tableHeader = [
+      "| Name | Description | 💼 | 🔧 |",
+      "| :--- | :---------- | :- | :- |",
+    ];
 
-    const isRecommended = recommendedRules.has(`${pluginName}/${ruleName}`);
-    const isFixable = !!meta.fixable;
+    const tableRows = rules.map(([ruleName, rule]) => {
+      const { meta } = rule;
+      if (!meta?.docs) {
+        throw new Error(`Docs meta not found for rule ${ruleName}`);
+      }
 
-    const name = `[${ruleName}](src/rules/${ruleName}.md)`;
-    const { description } = meta.docs;
-    const recommended = isRecommended ? "✅" : "";
-    const fixable = isFixable ? "🔧" : "";
+      const isRecommended = recommendedRules.has(`${pluginName}/${ruleName}`);
+      const isFixable = !!meta.fixable;
 
-    return `| ${name} | ${description} | ${recommended} | ${fixable} |`;
-  });
+      const name = `[${ruleName}](src/rules/${ruleName}.md)`;
+      const { description } = meta.docs;
+      const recommended = isRecommended ? "✅" : "";
+      const fixable = isFixable ? "🔧" : "";
 
-  return [
+      return `| ${name} | ${description} | ${recommended} | ${fixable} |`;
+    });
+
+    return [...tableHeader, ...tableRows].join("\n");
+  };
+
+  // Generate content with category sections
+  const content = [
     "## Rules",
     "",
     "<!-- Do not manually modify this list. Run: `pnpm run gen:docs` -->",
     "<!-- begin auto-generated rules list -->",
     "",
     "✅ Set in the `recommended` [configuration](https://github.com/ximagine-ai/eslint-plugin#configs).",
+    "",
     "🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).",
     "",
-    ...tableHeader,
-    ...tableRows,
-    "",
-    "<!-- end auto-generated rules list -->",
-    "",
-  ].join("\n");
+  ];
+
+  // Sort categories to ensure consistent order
+  const sortedCategories = Object.entries(rulesByCategory).sort(([a], [b]) =>
+    a.localeCompare(b),
+  );
+
+  // Generate tables for each category
+  for (const [category, rules] of sortedCategories) {
+    content.push(`### ${startCase(category)}`, "", generateTable(rules), "");
+  }
+
+  content.push("<!-- end auto-generated rules list -->", "");
+
+  return content.join("\n");
 }
 
 function updateReadme() {
@@ -143,19 +171,21 @@ function updateReadme() {
     return;
   }
 
-  let nextSectionStart = content.indexOf("##", rulesStart + 8);
-  if (nextSectionStart === -1) {
-    nextSectionStart = content.length;
-  }
+  // Find the next section after ## Rules
+  const nextSectionStart = content.slice(rulesStart + 8).search(/^##\s/m);
+
+  // Calculate the actual end position
+  const rulesEnd =
+    nextSectionStart === -1
+      ? content.length
+      : rulesStart + 8 + nextSectionStart;
 
   // Generate new rules table
   const newRulesSection = generateRulesTable();
 
   // Combine content
   const newContent =
-    content.slice(0, rulesStart) +
-    newRulesSection +
-    content.slice(nextSectionStart);
+    content.slice(0, rulesStart) + newRulesSection + content.slice(rulesEnd);
 
   writeFileSync(readmePath, newContent);
   console.log("✅ Updated README.md rules section");

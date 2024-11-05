@@ -4,6 +4,8 @@ Disallow type assertions through unknown/any without documentation.
 
 ✅ This rule is _enabled_ in the `recommended` [config](https://github.com/ximagine-ai/eslint-plugin#configs).
 
+📋 This rule belongs to the `best-practice` [category](../../README.md#best-practice).
+
 <!-- end auto-generated rule header -->
 <!-- Do not manually modify this header. Run: `pnpm run gen:docs` -->
 
