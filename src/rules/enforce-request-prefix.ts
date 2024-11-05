@@ -1,4 +1,5 @@
 import { TSESTree } from "@typescript-eslint/utils";
+import { upperFirst } from "es-toolkit";
 
 import { createEslintRule, type RuleModule } from "../utils/create-rule";
 
@@ -62,10 +63,6 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
       );
     }
 
-    function capitalizeFirstLetter(str: string): string {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    }
-
     return {
       VariableDeclarator(node) {
         if (node.init?.type === TSESTree.AST_NODE_TYPES.CallExpression) {
@@ -83,7 +80,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
               isTRPCReactQueryHook(node.init) ||
               isVanillaReactQueryHook(node.init)
             ) {
-              const capitalizedName = capitalizeFirstLetter(name);
+              const capitalizedName = upperFirst(name);
               const scope = sourceCode.getScope(node);
               const variable = scope.variables.find((v) => v.name === name);
 
