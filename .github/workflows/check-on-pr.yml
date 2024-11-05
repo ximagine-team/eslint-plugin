@@ -30,7 +30,6 @@ jobs:
         run: pnpm run test
 
   docs:
-    if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -53,7 +52,6 @@ jobs:
           branch: ${{ github.head_ref }}
 
   code-style:
-    if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
