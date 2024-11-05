@@ -21,11 +21,6 @@ declare module "@typescript-eslint/utils/ts-eslint" {
      * Utilizing the rule category meta to group rules in the README.
      * Only for internal use.
      */
-    category:
-      | "best-practice"
-      | "code-style"
-      | "import-export"
-      | "react-jsx"
-      | "react-query";
+    category: "best-practice" | "code-style" | "import-export" | "react-query";
   }
 }
