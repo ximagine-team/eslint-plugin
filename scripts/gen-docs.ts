@@ -98,7 +98,7 @@ function updateRuleDoc(ruleName: string) {
 function generateRulesTable() {
   const rulesRecord = rules as Record<string, RuleModule<unknown[]>>;
 
-  // Group rules by category using DEFAULT_CATEGORY_NAME
+  // Group rules by category
   const rulesByCategory = groupBy(
     Object.entries(rulesRecord),
     (rule) => rule[1].meta?.docs?.category ?? DEFAULT_CATEGORY_NAME,
