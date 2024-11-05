@@ -15,7 +15,6 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
     type: "problem",
     docs: {
       description: "Enforce request prefix for React Query hooks",
-      category: "react-query",
     },
     fixable: "code",
     schema: [],

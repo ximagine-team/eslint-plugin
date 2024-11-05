@@ -15,7 +15,6 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
     docs: {
       description:
         "Disallow type assertions through unknown/any without documentation",
-      category: "best-practice",
     },
     schema: [],
     messages: {

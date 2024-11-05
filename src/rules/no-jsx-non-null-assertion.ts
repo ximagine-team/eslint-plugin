@@ -14,7 +14,6 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
     type: "problem",
     docs: {
       description: "Disallow non-null assertions (!) in JSX expressions",
-      category: "best-practice",
     },
     schema: [],
     messages: {
