@@ -6,15 +6,13 @@ import path from "node:path";
 import { pluginName } from "src/types";
 
 import plugin from "../src/index";
-import { rules } from "../src/rules";
+import { ruleCategories, type RuleName, rules } from "../src/rules";
 
 const recommendedRules = new Set(
   Object.keys(plugin.configs.recommended.rules!),
 );
 
-const DEFAULT_CATEGORY_NAME = "general";
-
-function generateRuleHeader(ruleName: string) {
+function generateRuleHeader(ruleName: RuleName) {
   const rulesRecord = rules as Record<string, RuleModule<unknown[]>>;
   const rule = rulesRecord[ruleName];
   const { meta } = rule;
@@ -54,7 +52,7 @@ function generateRuleHeader(ruleName: string) {
     );
   }
 
-  const category = meta.docs.category ?? DEFAULT_CATEGORY_NAME;
+  const category = ruleCategories[ruleName];
   // Add category info
   lines.push(
     `📋 This rule belongs to the \`${category}\` [category](../../README.md#${kebabCase(category)}).`,
@@ -68,7 +66,7 @@ function generateRuleHeader(ruleName: string) {
   return lines.join("\n");
 }
 
-function updateRuleDoc(ruleName: string) {
+function updateRuleDoc(ruleName: RuleName) {
   const docPath = path.resolve(
     import.meta.dirname,
     `../src/rules/${ruleName}.md`,
@@ -96,12 +94,10 @@ function updateRuleDoc(ruleName: string) {
 }
 
 function generateRulesTable() {
-  const rulesRecord = rules as Record<string, RuleModule<unknown[]>>;
-
   // Group rules by category
   const rulesByCategory = groupBy(
-    Object.entries(rulesRecord),
-    (rule) => rule[1].meta?.docs?.category ?? DEFAULT_CATEGORY_NAME,
+    Object.entries(rules),
+    (rule) => ruleCategories[rule[0] as RuleName],
   );
 
   const generateTable = (rules: [string, RuleModule<unknown[]>][]) => {
@@ -193,7 +189,7 @@ function updateReadme() {
 
 // Update all rule docs
 for (const ruleName of Object.keys(rules)) {
-  updateRuleDoc(ruleName);
+  updateRuleDoc(ruleName as RuleName);
 }
 
 // Update README

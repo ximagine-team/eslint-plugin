@@ -14,13 +14,3 @@ export type XimaginePlugin = ESLint.Plugin & {
 export type RuleSet = Partial<
   Record<`${typeof pluginName}/${RuleName}`, Linter.RuleEntry>
 >;
-
-declare module "@typescript-eslint/utils/ts-eslint" {
-  interface RuleMetaDataDocs {
-    /**
-     * Utilizing the rule category meta to group rules in the README.
-     * Only for internal use.
-     */
-    category: "best-practice" | "code-style" | "import-export" | "react-query";
-  }
-}
