@@ -1,4 +1,5 @@
 import { TSESTree } from "@typescript-eslint/utils";
+import { camelCase } from "es-toolkit";
 
 import { createEslintRule, type RuleModule } from "../utils/create-rule";
 
@@ -133,7 +134,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
         ) {
           const { name } = typeNode.typeName;
 
-          return name.charAt(0).toLowerCase() + name.slice(1);
+          return camelCase(name);
         }
       }
 
