@@ -71,3 +71,11 @@ jobs:
         with:
           commit_message: "style: auto fix"
           branch: ${{ github.head_ref }}
+
+  jsr-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/setup
+
+      - name: Run jsr check
+        run: npx jsr publish --dry-run
