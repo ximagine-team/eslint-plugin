@@ -4,6 +4,8 @@ Enforce wrapping React Query mutateAsync calls in try-catch blocks.
 
 ✅ This rule is _enabled_ in the `recommended` [config](https://github.com/ximagine-ai/eslint-plugin#configs).
 
+📋 This rule belongs to the `react-query` [category](../../README.md#react-query).
+
 <!-- end auto-generated rule header -->
 <!-- Do not manually modify this header. Run: `pnpm run gen:docs` -->
 
