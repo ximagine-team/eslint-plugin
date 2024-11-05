@@ -6,6 +6,7 @@ import noJsxNonNullAssertion from "./no-jsx-non-null-assertion";
 import noUncaughtMutateAsync from "./no-uncaught-mutate-async";
 import noUnsafeTypeAssertion from "./no-unsafe-type-assertion";
 import noVoidMutateAsync from "./no-void-mutate-async";
+import paddingLines from "./padding-lines";
 import preferOneLineArrowFunction from "./prefer-one-line-arrow-function";
 
 export type RuleName = keyof typeof rules;
@@ -24,6 +25,7 @@ export const rules = {
   "no-unsafe-type-assertion": noUnsafeTypeAssertion,
   "no-void-mutate-async": noVoidMutateAsync,
   "prefer-one-line-arrow-function": preferOneLineArrowFunction,
+  "padding-lines": paddingLines,
 } satisfies Record<string, RuleModule<unknown[]>>;
 
 export const ruleCategories: Record<RuleName, RuleCategory> = {
@@ -34,4 +36,5 @@ export const ruleCategories: Record<RuleName, RuleCategory> = {
   "no-unsafe-type-assertion": "best-practice",
   "no-void-mutate-async": "react-query",
   "prefer-one-line-arrow-function": "code-style",
+  "padding-lines": "code-style",
 };
