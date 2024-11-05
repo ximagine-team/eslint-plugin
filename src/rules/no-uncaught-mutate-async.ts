@@ -15,7 +15,6 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
     docs: {
       description:
         "Enforce wrapping React Query mutateAsync calls in try-catch blocks",
-      category: "react-query",
     },
     schema: [],
     messages: {

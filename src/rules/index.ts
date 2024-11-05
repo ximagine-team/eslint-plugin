@@ -8,6 +8,14 @@ import noUnsafeTypeAssertion from "./no-unsafe-type-assertion";
 import noVoidMutateAsync from "./no-void-mutate-async";
 import preferOneLineArrowFunction from "./prefer-one-line-arrow-function";
 
+export type RuleName = keyof typeof rules;
+
+export type RuleCategory =
+  | "best-practice"
+  | "code-style"
+  | "import-export"
+  | "react-query";
+
 export const rules = {
   "enforce-request-prefix": enforceRequestPrefix,
   "function-params-destructuring": functionParamsDestructuring,
@@ -18,4 +26,12 @@ export const rules = {
   "prefer-one-line-arrow-function": preferOneLineArrowFunction,
 } satisfies Record<string, RuleModule<unknown[]>>;
 
-export type RuleName = keyof typeof rules;
+export const ruleCategories: Record<RuleName, RuleCategory> = {
+  "enforce-request-prefix": "react-query",
+  "function-params-destructuring": "code-style",
+  "no-jsx-non-null-assertion": "best-practice",
+  "no-uncaught-mutate-async": "react-query",
+  "no-unsafe-type-assertion": "best-practice",
+  "no-void-mutate-async": "react-query",
+  "prefer-one-line-arrow-function": "code-style",
+};
