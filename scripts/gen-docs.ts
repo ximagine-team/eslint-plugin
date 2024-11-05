@@ -138,6 +138,7 @@ function generateRulesTable() {
     "<!-- begin auto-generated rules list -->",
     "",
     "✅ Set in the `recommended` [configuration](https://github.com/ximagine-ai/eslint-plugin#configs).",
+    "",
     "🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).",
     "",
   ];
