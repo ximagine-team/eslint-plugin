@@ -17,7 +17,7 @@ This rule enforces a coding style where object parameters are not destructured i
 
 ### Parameter Naming Convention
 
-The rule follows these priorities when naming parameters:
+When applying auto-fix, the rule follows these priorities for the parameter name:
 
 1. If the function returns JSX (React components), the parameter will be named `props`
 2. If the type ends with `Props` (including intersection types like `ButtonProps & HTMLProps`), the parameter will also be named `props`
@@ -65,32 +65,26 @@ const getUser = (user: User) => {
 
 ## Options
 
-The rule accepts an options object with the following properties:
-
-```ts
-interface Options {
-  maxDestructuredProperties?: number; // default: 2
-}
-```
-
 ### `maxDestructuredProperties`
 
-By default, this rule allows destructuring of up to 2 properties in the parameter list. You can customize this limit using the `maxDestructuredProperties` option:
+Type: `number`
 
-```json
-{
-  "rules": {
-    "function-params-destructuring": [
-      "error",
-      { "maxDestructuredProperties": 3 }
-    ]
-  }
-}
-```
+Default: `2`
 
-With this configuration, the following code would be valid:
+The maximum number of destructured properties allowed in the parameter list.
+
+Example:
 
 ```ts
+/*eslint ximagine/function-params-destructuring: [
+    "warn",
+    {
+      maxDestructuredProperties: 3,
+    },
+  ]
+*/
+
+// ✅ Correct
 function foo({ name, age, email }: Person) {
   console.log(name, age, email);
 }
