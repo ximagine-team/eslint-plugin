@@ -21,7 +21,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
     type: "layout",
     docs: {
       description:
-        "Enforce padding lines between class members, test suites and object properties",
+        "Enforce padding lines between class members, test functions and object properties",
     },
     fixable: "whitespace",
     schema: [

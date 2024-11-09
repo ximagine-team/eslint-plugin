@@ -1,6 +1,6 @@
 # padding-lines
 
-Enforce padding lines between class members, test suites and object properties.
+Enforce padding lines between class members, test functions and object properties.
 
 ✅ This rule is _enabled_ in the `recommended` [config](https://github.com/ximagine-ai/eslint-plugin#configs).
 
@@ -16,7 +16,7 @@ Enforce padding lines between class members, test suites and object properties.
 This rule enforces consistent padding lines:
 
 - Between class members (enabled by default)
-- Between variable declarations, test cases and hooks in test suites
+- Between test functions in test suites
 - Between object properties (when object name matches `objectPattern`)
 
 ### ❌ Incorrect
