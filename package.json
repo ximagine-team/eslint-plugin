@@ -5,7 +5,7 @@
     "lint": "eslint .",
     "lint:fix": "pnpm lint --fix",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\"",
     "test": "vitest",
     "gen:docs": "tsx scripts/gen-docs.ts"
   },
