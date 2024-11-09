@@ -4,6 +4,7 @@ import enforceRequestPrefix from "./enforce-request-prefix";
 import functionParamsDestructuring from "./function-params-destructuring";
 import noJsxNonNullAssertion from "./no-jsx-non-null-assertion";
 import noJsxOptionalChaining from "./no-jsx-optional-chaining";
+import noObjectLiteralTypeAssertion from "./no-object-literal-type-assertion";
 import noUncaughtMutateAsync from "./no-uncaught-mutate-async";
 import noUnsafeTypeAssertion from "./no-unsafe-type-assertion";
 import noVoidMutateAsync from "./no-void-mutate-async";
@@ -28,6 +29,7 @@ export const rules = {
   "no-void-mutate-async": noVoidMutateAsync,
   "padding-lines": paddingLines,
   "prefer-one-line-arrow-function": preferOneLineArrowFunction,
+  "no-object-literal-type-assertion": noObjectLiteralTypeAssertion,
 } satisfies Record<string, RuleModule<unknown[]>>;
 
 export const ruleCategories: Record<RuleName, RuleCategory> = {
@@ -40,4 +42,5 @@ export const ruleCategories: Record<RuleName, RuleCategory> = {
   "no-void-mutate-async": "react-query",
   "padding-lines": "code-style",
   "prefer-one-line-arrow-function": "code-style",
+  "no-object-literal-type-assertion": "best-practice",
 };
