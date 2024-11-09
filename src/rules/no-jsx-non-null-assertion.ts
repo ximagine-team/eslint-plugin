@@ -1,5 +1,4 @@
-import { TSESTree } from "@typescript-eslint/utils";
-
+import isInsideJSX from "../utils/ast/is-inside-jsx";
 import { createEslintRule, type RuleModule } from "../utils/create-rule";
 
 export const RULE_NAME = "no-jsx-non-null-assertion";
@@ -23,27 +22,9 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
   },
   defaultOptions: [],
   create: (context) => {
-    function isInsideJSXExpression(node: TSESTree.Node): boolean {
-      let current = node.parent;
-      while (current) {
-        if (current.type === TSESTree.AST_NODE_TYPES.JSXExpressionContainer) {
-          return true;
-        }
-        if (current.type === TSESTree.AST_NODE_TYPES.JSXSpreadAttribute) {
-          return true;
-        }
-        if (current.type === TSESTree.AST_NODE_TYPES.JSXAttribute) {
-          return true;
-        }
-        current = current.parent;
-      }
-
-      return false;
-    }
-
     return {
       TSNonNullExpression(node) {
-        if (isInsideJSXExpression(node)) {
+        if (isInsideJSX(node)) {
           context.report({
             node,
             messageId: "noJsxNonNullAssertion",
