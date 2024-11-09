@@ -18,7 +18,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
     schema: [],
     messages: {
       noJsxNonNullAssertion:
-        "Non-null assertions are not allowed in JSX expressions. Handle null/undefined values before rendering.",
+        "Non-null assertions are not allowed in JSX expressions. Use intermediate variable and handle null/undefined before rendering.",
     },
   },
   defaultOptions: [],
