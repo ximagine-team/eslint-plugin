@@ -31,11 +31,12 @@ export default defineConfig({
 
 ### Best Practice
 
-| Name                                                                | Description                                                        | 💼  | 🔧  |
-| :------------------------------------------------------------------ | :----------------------------------------------------------------- | :-- | :-- |
-| [no-jsx-non-null-assertion](src/rules/no-jsx-non-null-assertion.md) | Disallow non-null assertions (!) in JSX expressions                | ✅  |     |
-| [no-jsx-optional-chaining](src/rules/no-jsx-optional-chaining.md)   | Disallow optional chaining (?.) in JSX expressions                 | ✅  |     |
-| [no-unsafe-type-assertion](src/rules/no-unsafe-type-assertion.md)   | Disallow type assertions through unknown/any without documentation | ✅  |     |
+| Name                                                                              | Description                                                        | 💼  | 🔧  |
+| :-------------------------------------------------------------------------------- | :----------------------------------------------------------------- | :-- | :-- |
+| [no-jsx-non-null-assertion](src/rules/no-jsx-non-null-assertion.md)               | Disallow non-null assertions (!) in JSX expressions                | ✅  |     |
+| [no-jsx-optional-chaining](src/rules/no-jsx-optional-chaining.md)                 | Disallow optional chaining (?.) in JSX expressions                 | ✅  |     |
+| [no-unsafe-type-assertion](src/rules/no-unsafe-type-assertion.md)                 | Disallow type assertions through unknown/any without documentation | ✅  |     |
+| [no-object-literal-type-assertion](src/rules/no-object-literal-type-assertion.md) | Disallow type assertions on object literals without documentation  | ✅  |     |
 
 ### Code Style
 

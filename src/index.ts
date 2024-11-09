@@ -27,6 +27,7 @@ const recommended: Linter.Config = {
     [`${pluginName}/no-uncaught-mutate-async`]: "error",
     [`${pluginName}/no-void-mutate-async`]: "error",
     [`${pluginName}/no-jsx-optional-chaining`]: "error",
+    [`${pluginName}/no-object-literal-type-assertion`]: "error",
     [`${pluginName}/function-params-destructuring`]: "warn",
     [`${pluginName}/prefer-one-line-arrow-function`]: "warn",
     [`${pluginName}/enforce-request-prefix`]: "warn",
