@@ -34,6 +34,7 @@ export default defineConfig({
 | Name                                                                | Description                                                        | 💼  | 🔧  |
 | :------------------------------------------------------------------ | :----------------------------------------------------------------- | :-- | :-- |
 | [no-jsx-non-null-assertion](src/rules/no-jsx-non-null-assertion.md) | Disallow non-null assertions (!) in JSX expressions                | ✅  |     |
+| [no-jsx-optional-chaining](src/rules/no-jsx-optional-chaining.md)   | Disallow optional chaining (?.) in JSX expressions                 | ✅  |     |
 | [no-unsafe-type-assertion](src/rules/no-unsafe-type-assertion.md)   | Disallow type assertions through unknown/any without documentation | ✅  |     |
 
 ### Code Style
@@ -41,8 +42,8 @@ export default defineConfig({
 | Name                                                                          | Description                                                                                                 | 💼  | 🔧  |
 | :---------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------- | :-- | :-- |
 | [function-params-destructuring](src/rules/function-params-destructuring.md)   | Enforce destructuring function parameters in the function body                                              | ✅  | 🔧  |
-| [prefer-one-line-arrow-function](src/rules/prefer-one-line-arrow-function.md) | Prefer one-line arrow function expressions over block body when function only has a single return statement | ✅  | 🔧  |
 | [padding-lines](src/rules/padding-lines.md)                                   | Enforce padding lines between class members, test functions and object properties                           | ✅  | 🔧  |
+| [prefer-one-line-arrow-function](src/rules/prefer-one-line-arrow-function.md) | Prefer one-line arrow function expressions over block body when function only has a single return statement | ✅  | 🔧  |
 
 ### React Query
 
