@@ -1,6 +1,6 @@
 import { TSESTree } from "@typescript-eslint/utils";
-import hasCommentAbove from "src/utils/ast/has-comment-above";
 
+import hasCommentAbove from "../utils/ast/has-comment-above";
 import { createEslintRule, type RuleModule } from "../utils/create-rule";
 
 export const RULE_NAME = "no-unsafe-type-assertion";

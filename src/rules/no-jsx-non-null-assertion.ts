@@ -1,5 +1,4 @@
-import isInsideJSX from "src/utils/ast/is-inside-jsx";
-
+import isInsideJSX from "../utils/ast/is-inside-jsx";
 import { createEslintRule, type RuleModule } from "../utils/create-rule";
 
 export const RULE_NAME = "no-jsx-non-null-assertion";
