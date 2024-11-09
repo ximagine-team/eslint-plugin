@@ -45,13 +45,11 @@ runTest({
     },
     {
       code: "<div>{user?.profile?.email}</div>",
-      errors: [
-        { messageId: "noJsxOptionalChaining" },
-      ],
+      errors: [{ messageId: "noJsxOptionalChaining" }],
     },
     {
       code: "<Component {...props?.data} />",
       errors: [{ messageId: "noJsxOptionalChaining" }],
     },
   ],
-}); 
+});
