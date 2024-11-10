@@ -46,6 +46,12 @@ export default defineConfig({
 | [padding-lines](src/rules/padding-lines.md)                                   | Enforce padding lines between class members, test functions and object properties                           | ✅  | 🔧  |
 | [prefer-one-line-arrow-function](src/rules/prefer-one-line-arrow-function.md) | Prefer one-line arrow function expressions over block body when function only has a single return statement | ✅  | 🔧  |
 
+### Import Export
+
+| Name                                              | Description                                                                 | 💼  | 🔧  |
+| :------------------------------------------------ | :-------------------------------------------------------------------------- | :-- | :-- |
+| [no-double-export](src/rules/no-double-export.md) | Disallow having both named export and default export of the same identifier | ✅  |     |
+
 ### React Query
 
 | Name                                                              | Description                                                        | 💼  | 🔧  |

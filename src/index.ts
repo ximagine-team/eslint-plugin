@@ -26,6 +26,7 @@ const recommended: Linter.Config = {
   rules: {
     [`${pluginName}/no-uncaught-mutate-async`]: "error",
     [`${pluginName}/no-void-mutate-async`]: "error",
+    [`${pluginName}/no-double-export`]: "error",
     [`${pluginName}/no-jsx-optional-chaining`]: "error",
     [`${pluginName}/no-object-literal-type-assertion`]: "error",
     [`${pluginName}/function-params-destructuring`]: "warn",
