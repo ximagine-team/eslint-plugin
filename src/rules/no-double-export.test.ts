@@ -31,7 +31,7 @@ runTest({
       `,
       errors: [
         { messageId: "noDoubleExport", line: 1 },
-        { messageId: "noDoubleExport", line: 2 }
+        { messageId: "noDoubleExport", line: 2 },
       ],
     },
     // Variable with both exports
@@ -42,7 +42,7 @@ runTest({
       `,
       errors: [
         { messageId: "noDoubleExport", line: 1 },
-        { messageId: "noDoubleExport", line: 2 }
+        { messageId: "noDoubleExport", line: 2 },
       ],
     },
     // Type with both exports
@@ -53,8 +53,8 @@ runTest({
       `,
       errors: [
         { messageId: "noDoubleExport", line: 1 },
-        { messageId: "noDoubleExport", line: 2 }
+        { messageId: "noDoubleExport", line: 2 },
       ],
     },
   ],
-}); 
+});
