@@ -11,7 +11,7 @@ Disallow having both named export and default export of the same identifier.
 
 ## Rule Details
 
-This rule prevents exporting the same identifier as both a named export and a default export in the same file. This helps maintain clearer and more consistent import patterns.
+This rule prevents exporting the same identifier as both a named export and a default export in the same file. This helps maintain more consistent import patterns.
 
 ### ❌ Incorrect
 
