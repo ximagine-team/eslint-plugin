@@ -10,6 +10,7 @@ import noUncaughtMutateAsync from "./no-uncaught-mutate-async";
 import noUnsafeTypeAssertion from "./no-unsafe-type-assertion";
 import noVoidMutateAsync from "./no-void-mutate-async";
 import paddingLines from "./padding-lines";
+import preferExportDefaultFunction from "./prefer-export-default-function";
 import preferOneLineArrowFunction from "./prefer-one-line-arrow-function";
 
 export type RuleName = keyof typeof rules;
@@ -30,6 +31,7 @@ export const rules = {
   "no-unsafe-type-assertion": noUnsafeTypeAssertion,
   "no-void-mutate-async": noVoidMutateAsync,
   "padding-lines": paddingLines,
+  "prefer-export-default-function": preferExportDefaultFunction,
   "prefer-one-line-arrow-function": preferOneLineArrowFunction,
   "no-object-literal-type-assertion": noObjectLiteralTypeAssertion,
 } satisfies Record<string, RuleModule<unknown[]>>;
@@ -44,6 +46,7 @@ export const ruleCategories: Record<RuleName, RuleCategory> = {
   "no-unsafe-type-assertion": "best-practice",
   "no-void-mutate-async": "react-query",
   "padding-lines": "code-style",
+  "prefer-export-default-function": "code-style",
   "prefer-one-line-arrow-function": "code-style",
   "no-object-literal-type-assertion": "best-practice",
 };
