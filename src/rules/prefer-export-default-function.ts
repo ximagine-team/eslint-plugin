@@ -61,7 +61,6 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
               .getText(functionDecl)
               .replace(/^function\s+/, ""); // Remove the 'function' keyword
 
-            // Create two fixes: one to remove the original function and one to remove the export
             return [
               // Replace the function declaration with the new export default function
               fixer.replaceText(
