@@ -45,6 +45,13 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
         )
           return;
 
+        // If the function is already exported by name, not checking
+        const isNamedExport =
+          functionDecl.parent?.type ===
+          TSESTree.AST_NODE_TYPES.ExportNamedDeclaration;
+
+        if (isNamedExport) return;
+
         context.report({
           node: exportDecl,
           messageId: "preferExportDefaultFunction",

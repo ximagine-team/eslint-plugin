@@ -16,6 +16,11 @@ runTest({
     "export function foo() {}",
     // Arrow functions are fine
     "const foo = () => {}; export default foo",
+    // Exported by both named and default
+    $`
+      export function foo() {}
+      export default foo;
+    `,
   ],
   invalid: [
     {
