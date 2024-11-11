@@ -35,6 +35,7 @@ const recommended: Linter.Config = {
     [`${pluginName}/no-jsx-non-null-assertion`]: "warn",
     [`${pluginName}/no-unsafe-type-assertion`]: "warn",
     [`${pluginName}/padding-lines`]: "warn",
+    [`${pluginName}/prefer-export-default-function`]: "warn",
   } satisfies RuleSet,
 };
 
