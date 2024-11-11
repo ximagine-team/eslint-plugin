@@ -45,12 +45,12 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
         )
           return;
 
-        // If the function is already exported by name, not checking
-        const isNamedExport =
+        // If the function is also exported by name, not reporting
+        const hasNamedExport =
           functionDecl.parent?.type ===
           TSESTree.AST_NODE_TYPES.ExportNamedDeclaration;
 
-        if (isNamedExport) return;
+        if (hasNamedExport) return;
 
         context.report({
           node: exportDecl,
