@@ -10,7 +10,7 @@
     "gen:docs": "tsx scripts/gen-docs.ts"
   },
   "devDependencies": {
-    "@types/node": "^22.8.7",
+    "@types/node": "^22.9.0",
     "@typescript-eslint/typescript-estree": "^8.14.0",
     "@typescript-eslint/utils": "^8.13.0",
     "@ximagine/eslint-config": "npm:@jsr/ximagine__eslint-config@^0.1.1",
