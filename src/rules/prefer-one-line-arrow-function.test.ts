@@ -20,10 +20,7 @@ const invalids = [
     "const fn = async (a: number, b: string): Promise<number> => { return 42 }",
     "const fn = async (a: number, b: string): Promise<number> => 42",
   ],
-  [
-    "const fn = () => { return { num: 42 } }",
-    "const fn = () => ({ num: 42 })",
-  ],
+  ["const fn = () => { return { num: 42 } }", "const fn = () => ({ num: 42 })"],
 ];
 
 runTest({

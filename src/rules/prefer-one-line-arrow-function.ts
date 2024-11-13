@@ -50,6 +50,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
         const needsParens =
           returnStatement.argument.type ===
           TSESTree.AST_NODE_TYPES.ObjectExpression;
+
         const returnText = needsParens ? `(${returnArgText})` : returnArgText;
 
         // Get type annotations for function parameters and return value
