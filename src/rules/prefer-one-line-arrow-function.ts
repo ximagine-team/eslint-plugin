@@ -41,6 +41,17 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
         const returnStatement = body[0];
         if (!returnStatement.argument) return;
 
+        // Get the return argument text
+        const returnArgText = context.sourceCode.getText(
+          returnStatement.argument,
+        );
+
+        // If an object literal is returned, wrap it in parentheses
+        const needsParens =
+          returnStatement.argument.type ===
+          TSESTree.AST_NODE_TYPES.ObjectExpression;
+        const returnText = needsParens ? `(${returnArgText})` : returnArgText;
+
         // Get type annotations for function parameters and return value
         const typeParameters = node.typeParameters
           ? context.sourceCode.getText(node.typeParameters)
@@ -58,7 +69,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
           );
 
         // Construct new arrow function expression
-        const newArrowFunction = `${node.async ? "async " : ""}${typeParameters}(${params})${returnType} => ${context.sourceCode.getText(returnStatement.argument)}`;
+        const newArrowFunction = `${node.async ? "async " : ""}${typeParameters}(${params})${returnType} => ${returnText}`;
 
         context.report({
           node,
