@@ -46,10 +46,14 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
           returnStatement.argument,
         );
 
-        // If an object literal is returned, wrap it in parentheses
+        // Wrap the returning object literal in parentheses, including when it's part of a satisfies expression
         const needsParens =
           returnStatement.argument.type ===
-          TSESTree.AST_NODE_TYPES.ObjectExpression;
+            TSESTree.AST_NODE_TYPES.ObjectExpression ||
+          (returnStatement.argument.type ===
+            TSESTree.AST_NODE_TYPES.TSSatisfiesExpression &&
+            returnStatement.argument.expression.type ===
+              TSESTree.AST_NODE_TYPES.ObjectExpression);
 
         const returnText = needsParens ? `(${returnArgText})` : returnArgText;
 
