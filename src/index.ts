@@ -33,7 +33,6 @@ const recommended: Linter.Config = {
     [`${pluginName}/function-params-destructuring`]: "warn",
     [`${pluginName}/padding-lines`]: "warn",
     [`${pluginName}/prefer-export-default-function`]: "warn",
-    [`${pluginName}/prefer-one-line-arrow-function`]: "warn",
     [`${pluginName}/enforce-request-prefix`]: "warn",
     [`${pluginName}/no-void-mutate-async`]: "warn",
   } satisfies RuleSet,
