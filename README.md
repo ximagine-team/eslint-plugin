@@ -40,12 +40,11 @@ export default defineConfig({
 
 ### Code Style
 
-| Name                                                                          | Description                                                                                                 | 💼  | 🔧  |
-| :---------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------- | :-- | :-- |
-| [function-params-destructuring](src/rules/function-params-destructuring.md)   | Enforce destructuring function parameters in the function body                                              | ✅  | 🔧  |
-| [padding-lines](src/rules/padding-lines.md)                                   | Enforce padding lines between class members, test functions and object properties                           | ✅  | 🔧  |
-| [prefer-export-default-function](src/rules/prefer-export-default-function.md) | Prefer 'export default function' over separate export default                                               | ✅  | 🔧  |
-| [prefer-one-line-arrow-function](src/rules/prefer-one-line-arrow-function.md) | Prefer one-line arrow function expressions over block body when function only has a single return statement | ✅  | 🔧  |
+| Name                                                                          | Description                                                                       | 💼  | 🔧  |
+| :---------------------------------------------------------------------------- | :-------------------------------------------------------------------------------- | :-- | :-- |
+| [function-params-destructuring](src/rules/function-params-destructuring.md)   | Enforce destructuring function parameters in the function body                    | ✅  | 🔧  |
+| [padding-lines](src/rules/padding-lines.md)                                   | Enforce padding lines between class members, test functions and object properties | ✅  | 🔧  |
+| [prefer-export-default-function](src/rules/prefer-export-default-function.md) | Prefer 'export default function' over separate export default                     | ✅  | 🔧  |
 
 ### Import Export
 
