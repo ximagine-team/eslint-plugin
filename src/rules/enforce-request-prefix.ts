@@ -69,8 +69,9 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
             if (
               node.id.type !== TSESTree.AST_NODE_TYPES.Identifier ||
               node.init?.type !== TSESTree.AST_NODE_TYPES.CallExpression
-            )
+            ) {
               return;
+}
 
             const { name } = node.id;
             if (name.startsWith("request")) return;

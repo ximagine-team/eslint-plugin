@@ -39,9 +39,9 @@ runTest({
           const result = doSomething();
           return result;
         }
-
+        
         const anotherVariable = 1;
-
+        
         export default processData;
       `,
       output:

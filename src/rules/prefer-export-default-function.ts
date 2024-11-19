@@ -24,8 +24,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
     },
   },
   defaultOptions: [],
-  create: (context) => {
-    return {
+  create: (context) => ({
       "ExportDefaultDeclaration > Identifier"(node: TSESTree.Identifier) {
         if (
           node.parent?.type !== TSESTree.AST_NODE_TYPES.ExportDefaultDeclaration
@@ -42,8 +41,9 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
         if (
           !functionDecl ||
           functionDecl.type !== TSESTree.AST_NODE_TYPES.FunctionDeclaration
-        )
+        ) {
           return;
+}
 
         // If the function is also exported by name, not reporting
         const hasNamedExport =
@@ -73,8 +73,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
           },
         });
       },
-    };
-  },
+    }),
 });
 
 export default rule;

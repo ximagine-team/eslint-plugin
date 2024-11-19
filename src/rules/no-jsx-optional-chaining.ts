@@ -21,8 +21,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
     },
   },
   defaultOptions: [],
-  create: (context) => {
-    return {
+  create: (context) => ({
       ChainExpression(node) {
         if (isInsideJSX(node)) {
           context.report({
@@ -31,8 +30,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
           });
         }
       },
-    };
-  },
+    }),
 });
 
 export default rule;
