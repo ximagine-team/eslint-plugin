@@ -47,7 +47,7 @@ describe("api", () => {
 });
 
 // Objects (when matching objectPattern)
-const userApi = {
+const userAPI = {
   getUser: () => {},
   createUser: () => {},
   updateUser: () => {},
@@ -90,7 +90,7 @@ describe("api", () => {
 });
 
 // Objects (when matching objectPattern)
-const userApi = {
+const userAPI = {
   getUser: () => {},
 
   createUser: () => {},

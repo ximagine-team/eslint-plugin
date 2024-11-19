@@ -52,8 +52,7 @@ runTest({
           b: 2
         };
       `,
-      // eslint-disable-next-line case-police/string-check
-      options: [{ objectPattern: "Api$" }],
+      options: [{ objectPattern: "API$" }],
     },
     // Non-describe test functions should be ignored
     {
@@ -176,20 +175,19 @@ runTest({
     // Only check objects matching pattern
     {
       code: $`
-        const userApi = {
+        const userAPI = {
           get: () => {},
           post: () => {}
         };
       `,
       output: $`
-        const userApi = {
+        const userAPI = {
           get: () => {},
         
           post: () => {}
         };
       `,
-      // eslint-disable-next-line case-police/string-check
-      options: [{ objectPattern: "Api$" }],
+      options: [{ objectPattern: "API$" }],
       errors: [
         { messageId: "missingPaddingLine", data: { type: "object property" } },
       ],
@@ -250,12 +248,12 @@ runTest({
       code: $`
         describe("api", () => {
           beforeAll(() => {});
-          describe("subApi", () => {
+          describe("subAPI", () => {
             beforeEach(() => {});
             it("test1", () => {});
             afterEach(() => {});
           });
-          describe("subApi2", () => {
+          describe("subAPI2", () => {
             beforeEach(() => {});
             it("test2", () => {});
             afterEach(() => {});
@@ -267,7 +265,7 @@ runTest({
         describe("api", () => {
           beforeAll(() => {});
         
-          describe("subApi", () => {
+          describe("subAPI", () => {
             beforeEach(() => {});
         
             it("test1", () => {});
@@ -275,7 +273,7 @@ runTest({
             afterEach(() => {});
           });
         
-          describe("subApi2", () => {
+          describe("subAPI2", () => {
             beforeEach(() => {});
         
             it("test2", () => {});
@@ -305,11 +303,11 @@ runTest({
       code: $`
         defineTestGroup("api", () => {
           beforeEach(() => {});
-          defineTestGroup("subApi", () => {
+          defineTestGroup("subAPI", () => {
             beforeAll(() => {});
             runTest("test1", () => {});
           });
-          defineTestGroup("subApi2", () => {
+          defineTestGroup("subAPI2", () => {
             beforeAll(() => {});
             runTest("test2", () => {});
           });
@@ -319,13 +317,13 @@ runTest({
         defineTestGroup("api", () => {
           beforeEach(() => {});
         
-          defineTestGroup("subApi", () => {
+          defineTestGroup("subAPI", () => {
             beforeAll(() => {});
         
             runTest("test1", () => {});
           });
         
-          defineTestGroup("subApi2", () => {
+          defineTestGroup("subAPI2", () => {
             beforeAll(() => {});
         
             runTest("test2", () => {});
