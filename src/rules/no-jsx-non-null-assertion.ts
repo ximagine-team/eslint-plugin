@@ -22,15 +22,15 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
   },
   defaultOptions: [],
   create: (context) => ({
-      TSNonNullExpression(node) {
-        if (isInsideJSX(node)) {
-          context.report({
-            node,
-            messageId: "noJsxNonNullAssertion",
-          });
-        }
-      },
-    }),
+    TSNonNullExpression(node) {
+      if (isInsideJSX(node)) {
+        context.report({
+          node,
+          messageId: "noJsxNonNullAssertion",
+        });
+      }
+    },
+  }),
 });
 
 export default rule;

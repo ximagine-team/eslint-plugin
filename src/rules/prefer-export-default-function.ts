@@ -25,55 +25,55 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
   },
   defaultOptions: [],
   create: (context) => ({
-      "ExportDefaultDeclaration > Identifier"(node: TSESTree.Identifier) {
-        if (
-          node.parent?.type !== TSESTree.AST_NODE_TYPES.ExportDefaultDeclaration
-        )
-          return;
+    "ExportDefaultDeclaration > Identifier"(node: TSESTree.Identifier) {
+      if (
+        node.parent?.type !== TSESTree.AST_NODE_TYPES.ExportDefaultDeclaration
+      )
+        return;
 
-        const exportDecl = node.parent;
-        const scope = context.sourceCode.getScope(exportDecl);
+      const exportDecl = node.parent;
+      const scope = context.sourceCode.getScope(exportDecl);
 
-        const variable = scope.variables.find((v) => v.name === node.name);
-        if (!variable) return;
+      const variable = scope.variables.find((v) => v.name === node.name);
+      if (!variable) return;
 
-        const functionDecl = variable.defs[0]?.node;
-        if (
-          !functionDecl ||
-          functionDecl.type !== TSESTree.AST_NODE_TYPES.FunctionDeclaration
-        ) {
-          return;
-}
+      const functionDecl = variable.defs[0]?.node;
+      if (
+        !functionDecl ||
+        functionDecl.type !== TSESTree.AST_NODE_TYPES.FunctionDeclaration
+      ) {
+        return;
+      }
 
-        // If the function is also exported by name, not reporting
-        const hasNamedExport =
-          functionDecl.parent?.type ===
-          TSESTree.AST_NODE_TYPES.ExportNamedDeclaration;
+      // If the function is also exported by name, not reporting
+      const hasNamedExport =
+        functionDecl.parent?.type ===
+        TSESTree.AST_NODE_TYPES.ExportNamedDeclaration;
 
-        if (hasNamedExport) return;
+      if (hasNamedExport) return;
 
-        context.report({
-          node: exportDecl,
-          messageId: "preferExportDefaultFunction",
-          fix(fixer) {
-            // Get the function text and normalize indentation
-            const functionText = context.sourceCode
-              .getText(functionDecl)
-              .replace(/^function\s+/, ""); // Remove the 'function' keyword
+      context.report({
+        node: exportDecl,
+        messageId: "preferExportDefaultFunction",
+        fix(fixer) {
+          // Get the function text and normalize indentation
+          const functionText = context.sourceCode
+            .getText(functionDecl)
+            .replace(/^function\s+/, ""); // Remove the 'function' keyword
 
-            return [
-              // Replace the function declaration with the new export default function
-              fixer.replaceText(
-                functionDecl,
-                `export default function ${functionText}`,
-              ),
-              // Remove the export default statement
-              fixer.remove(exportDecl),
-            ];
-          },
-        });
-      },
-    }),
+          return [
+            // Replace the function declaration with the new export default function
+            fixer.replaceText(
+              functionDecl,
+              `export default function ${functionText}`,
+            ),
+            // Remove the export default statement
+            fixer.remove(exportDecl),
+          ];
+        },
+      });
+    },
+  }),
 });
 
 export default rule;

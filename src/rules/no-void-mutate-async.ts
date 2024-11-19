@@ -73,7 +73,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
                 TSESTree.AST_NODE_TYPES.CallExpression
               ) {
                 return null;
-}
+              }
 
               return fixer.replaceText(
                 node,
