@@ -27,11 +27,9 @@ const config = rawConfig as unknown as Config;
 ### ✅ Correct
 
 ```ts
+// Have a comment explaining why the assertion is necessary
 // Need to cast through unknown because the source type is from an external library
 const value = someValue as unknown as TargetType;
-
-// API response type is dynamic and needs force casting
-const data = response as any as UserData;
 
 // Direct assertion when types are compatible
 const config = rawConfig as Config;
