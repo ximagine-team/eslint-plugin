@@ -1,12 +1,19 @@
 {
   "name": "@ximagine/eslint-plugin",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "license": "MIT",
   "exports": {
     ".": "./src/index.ts"
   },
   "publish": {
-    "include": ["jsr.json", "README.md", "src/**/*.ts"],
-    "exclude": ["src/**/*.test.ts", "src/**/*.md"]
+    "include": [
+      "jsr.json",
+      "README.md",
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "src/**/*.test.ts",
+      "src/**/*.md"
+    ]
   }
 }
