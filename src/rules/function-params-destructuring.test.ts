@@ -44,20 +44,20 @@ runTest({
     {
       code: "function foo({ name, age, email }: Person) { console.log(name) }",
       output:
-        "function foo(person: Person) {\n  const { name, age, email } = person\n  console.log(name)\n}",
+        "function foo(params: Person) {\n  const { name, age, email } = params\n  console.log(name)\n}",
       errors: [{ messageId: "noParamDestructuring" }],
     },
     {
       code: "const foo = ({ id, value, type, name }: Item) => value",
       output:
-        "const foo = (item: Item) => {\n  const { id, value, type, name } = item\n  return value\n}",
+        "const foo = (params: Item) => {\n  const { id, value, type, name } = params\n  return value\n}",
       errors: [{ messageId: "noParamDestructuring" }],
     },
     // Exceeds custom maxDestructuredProperties
     {
       code: "function process({ a, b, c, d }: Props) { return a + b }",
       output:
-        "function process(props: Props) {\n  const { a, b, c, d } = props\n  return a + b\n}",
+        "function process(params: Props) {\n  const { a, b, c, d } = params\n  return a + b\n}",
       options: [{ maxDestructuredProperties: 3 }],
       errors: [{ messageId: "noParamDestructuring" }],
     },
@@ -65,16 +65,18 @@ runTest({
     {
       code: "function process({ x, y, ...rest }: Props) { return x + y }",
       output:
-        "function process(props: Props) {\n  const { x, y, ...rest } = props\n  return x + y\n}",
+        "function process(params: Props) {\n  const { x, y, ...rest } = params\n  return x + y\n}",
       errors: [{ messageId: "noParamDestructuring" }],
     },
-    // JSX return without Props suffix
+    // JSX return
+    // Expression return
     {
       code: "const Card = ({ title, description, image }: CardType) => <div>{title}</div>",
       output:
         "const Card = (props: CardType) => {\n  const { title, description, image } = props\n  return <div>{title}</div>\n}",
       errors: [{ messageId: "noParamDestructuring" }],
     },
+    // Block return
     {
       code: $`
         const Component = ({ 
@@ -91,19 +93,6 @@ runTest({
           return <div>{name}</div>
         }
       `,
-      errors: [{ messageId: "noParamDestructuring" }],
-    },
-    // Test cases for Props naming convention
-    {
-      code: "function Button({ onClick, className, disabled }: ButtonProps) { return <button onClick={onClick} /> }",
-      output:
-        "function Button(props: ButtonProps) {\n  const { onClick, className, disabled } = props\n  return <button onClick={onClick} />\n}",
-      errors: [{ messageId: "noParamDestructuring" }],
-    },
-    {
-      code: "const Input = ({ value, onChange, placeholder }: InputProps) => <input value={value} onChange={onChange} />",
-      output:
-        "const Input = (props: InputProps) => {\n  const { value, onChange, placeholder } = props\n  return <input value={value} onChange={onChange} />\n}",
       errors: [{ messageId: "noParamDestructuring" }],
     },
   ],
