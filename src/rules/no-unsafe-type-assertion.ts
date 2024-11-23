@@ -42,7 +42,10 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
 
     return {
       TSAsExpression(node) {
-        if (isUnsafeAssertion(node) && !hasCommentAbove(node, context)) {
+        if (
+          isUnsafeAssertion(node) &&
+          !hasCommentAbove(node, context.sourceCode)
+        ) {
           context.report({
             node,
             messageId: "noUnsafeTypeAssertion",
