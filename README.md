@@ -9,15 +9,19 @@ pnpm dlx jsr add -D @ximagine/eslint-plugin
 ## Usage
 
 ```javascript
-import { defineConfig } from "@ximagine/eslint-config";
+// eslint.config.js
 import ximagine from "@ximagine/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
 
-export default defineConfig({
-  globals: {
-    presets: ["nodeBuiltin"],
+export default [
+  ximagine.configs.recommended,
+  {
+    files: ["**/*.{ts,tsx}"],
+    languageOptions: {
+      parser: tsParser,
+    },
   },
-  configs: (p) => [p.js, p.ts, p.vitest, ximagine.configs.recommended],
-});
+];
 ```
 
 ## Rules
