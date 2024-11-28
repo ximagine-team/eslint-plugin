@@ -1,13 +1,11 @@
-import type { RuleContext } from "@typescript-eslint/utils/ts-eslint";
+import type { SourceCode } from "@typescript-eslint/utils/ts-eslint";
 
 import { TSESTree } from "@typescript-eslint/utils";
 
-export default function hasCommentAbove<
-  MessageIds extends string,
-  Options extends readonly unknown[],
->(node: TSESTree.Node, context: RuleContext<MessageIds, Options>): boolean {
-  const { sourceCode } = context;
-
+export default function hasCommentAbove(
+  node: TSESTree.Node,
+  sourceCode: SourceCode,
+): boolean {
   const comments = sourceCode.getAllComments();
 
   // Check for comments in the lines immediately before the node
