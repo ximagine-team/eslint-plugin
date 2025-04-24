@@ -12,5 +12,7 @@ export function runTest(
   run({
     parser: tsParser,
     ...options,
+  }).catch((error) => {
+    console.error(error);
   });
 }
