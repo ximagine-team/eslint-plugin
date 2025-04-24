@@ -33,7 +33,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
       TSAsExpression(node) {
         if (
           isObjectLiteral(node.expression) &&
-          !hasCommentAbove(node, context)
+          !hasCommentAbove(node, context.sourceCode)
         ) {
           context.report({
             node,

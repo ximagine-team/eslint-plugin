@@ -17,12 +17,10 @@ This rule enforces a coding style where object parameters are not destructured i
 
 ### Parameter Naming Convention
 
-When applying auto-fix, the rule follows these priorities for the parameter name:
+When applying auto-fix:
 
 1. If the function returns JSX (React components), the parameter will be named `props`
-2. If the type ends with `Props` (including intersection types like `ButtonProps & HTMLProps`), the parameter will also be named `props`
-3. For other types, the parameter will be named as camelCase of the type name (e.g., `Person` -> `person`)
-4. If type cannot be inferred, fallback to `params`
+2. Otherwise, the parameter will be named `params`
 
 ### ❌ Incorrect
 

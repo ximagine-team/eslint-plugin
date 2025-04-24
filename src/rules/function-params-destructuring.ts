@@ -1,5 +1,4 @@
 import { TSESTree } from "@typescript-eslint/utils";
-import { camelCase } from "es-toolkit";
 
 import { createEslintRule, type RuleModule } from "../utils/create-rule";
 
@@ -66,18 +65,6 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
       return `const { ${properties} } = ${paramName}`;
     }
 
-    function hasPropsType(type: TSESTree.TypeNode): boolean {
-      if (type.type === TSESTree.AST_NODE_TYPES.TSTypeReference) {
-        const { typeName } = type;
-        if (typeName.type === TSESTree.AST_NODE_TYPES.Identifier)
-          return typeName.name.endsWith("Props");
-      } else if (type.type === TSESTree.AST_NODE_TYPES.TSIntersectionType) {
-        return type.types.some((t) => hasPropsType(t));
-      }
-
-      return false;
-    }
-
     function returnsJSX(
       node:
         | TSESTree.FunctionDeclaration
@@ -92,23 +79,24 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
         return true;
       }
 
-      // Check return type annotation if it exists
-      if (node.returnType?.typeAnnotation) {
-        const returnType = node.returnType.typeAnnotation;
-
-        // Check if return type is JSX.Element or React.ReactNode or similar
-        if (returnType.type === TSESTree.AST_NODE_TYPES.TSTypeReference) {
-          const { typeName } = returnType;
-          if (typeName.type === TSESTree.AST_NODE_TYPES.Identifier) {
-            const { name } = typeName;
+      // Check function body for JSX returns
+      if (node.body.type === TSESTree.AST_NODE_TYPES.BlockStatement) {
+        const containsJSXReturn = node.body.body.some((statement) => {
+          if (statement.type === TSESTree.AST_NODE_TYPES.ReturnStatement) {
+            const { argument } = statement;
 
             return (
-              name === "JSX.Element" ||
-              name === "ReactElement" ||
-              name.includes("JSX") ||
-              name.includes("React")
+              argument &&
+              (argument.type === TSESTree.AST_NODE_TYPES.JSXElement ||
+                argument.type === TSESTree.AST_NODE_TYPES.JSXFragment)
             );
           }
+
+          return false;
+        });
+
+        if (containsJSXReturn) {
+          return true;
         }
       }
 
@@ -116,7 +104,6 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
     }
 
     function suggestParamName(
-      param: TSESTree.ObjectPattern,
       node:
         | TSESTree.FunctionDeclaration
         | TSESTree.FunctionExpression
@@ -125,24 +112,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
       // If function returns JSX, use 'props'
       if (returnsJSX(node)) return "props";
 
-      // Try to infer a good parameter name from the type annotation
-      if (param.typeAnnotation?.typeAnnotation) {
-        const typeNode = param.typeAnnotation.typeAnnotation;
-        // If any part of the type ends with Props, use 'props'
-        if (hasPropsType(typeNode)) return "props";
-
-        // For simple type reference, convert to camelCase
-        if (
-          typeNode.type === TSESTree.AST_NODE_TYPES.TSTypeReference &&
-          typeNode.typeName.type === TSESTree.AST_NODE_TYPES.Identifier
-        ) {
-          const { name } = typeNode.typeName;
-
-          return camelCase(name);
-        }
-      }
-
-      // Fallback to 'params'
+      // Otherwise, use 'params'
       return "params";
     }
 
@@ -163,7 +133,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
               continue;
             }
 
-            const paramName = suggestParamName(param, node);
+            const paramName = suggestParamName(node);
             const typeAnnotation = getTypeAnnotation(param);
             const destructuring = generateDestructuring(param, paramName);
 
