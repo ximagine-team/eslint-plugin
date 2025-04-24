@@ -71,8 +71,9 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
               if (
                 argument.argument.type !==
                 TSESTree.AST_NODE_TYPES.CallExpression
-              )
+              ) {
                 return null;
+              }
 
               return fixer.replaceText(
                 node,

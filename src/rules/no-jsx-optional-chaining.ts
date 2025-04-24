@@ -21,18 +21,16 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
     },
   },
   defaultOptions: [],
-  create: (context) => {
-    return {
-      ChainExpression(node) {
-        if (isInsideJSX(node)) {
-          context.report({
-            node,
-            messageId: "noJsxOptionalChaining",
-          });
-        }
-      },
-    };
-  },
+  create: (context) => ({
+    ChainExpression(node) {
+      if (isInsideJSX(node)) {
+        context.report({
+          node,
+          messageId: "noJsxOptionalChaining",
+        });
+      }
+    },
+  }),
 });
 
 export default rule;

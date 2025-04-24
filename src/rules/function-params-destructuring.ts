@@ -54,8 +54,9 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
           if (
             p.type === TSESTree.AST_NODE_TYPES.RestElement &&
             p.argument.type === TSESTree.AST_NODE_TYPES.Identifier
-          )
+          ) {
             return `...${p.argument.name}`;
+          }
 
           return context.sourceCode.getText(p);
         })

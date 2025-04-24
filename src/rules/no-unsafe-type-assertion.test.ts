@@ -50,7 +50,7 @@ runTest({
     {
       code: $`
         // Just a random comment
-
+        
         const config = data as unknown as Config;
       `,
       errors: [{ messageId: "noUnsafeTypeAssertion" }],
@@ -58,7 +58,7 @@ runTest({
     {
       code: $`
         // Empty line between comment and assertion
-
+        
         const value = data as any as Type;
       `,
       errors: [{ messageId: "noUnsafeTypeAssertion" }],

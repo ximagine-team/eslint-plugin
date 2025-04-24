@@ -27,13 +27,11 @@ function RuleCreator(urlCreator: (name: string) => string) {
   return function createNamedRule<
     TOptions extends readonly unknown[],
     TMessageIds extends string,
-  >({
-    name,
-    meta,
-    ...rule
-  }: Readonly<
-    RuleWithMetaAndName<TOptions, TMessageIds>
-  >): RuleModule<TOptions> {
+  >(
+    params: Readonly<RuleWithMetaAndName<TOptions, TMessageIds>>,
+  ): RuleModule<TOptions> {
+    const { name, meta, ...rule } = params;
+
     return createRule<TOptions, TMessageIds>({
       meta: {
         ...meta,
@@ -56,22 +54,16 @@ function RuleCreator(urlCreator: (name: string) => string) {
 function createRule<
   TOptions extends readonly unknown[],
   TMessageIds extends string,
->({
-  create,
-  defaultOptions,
-  meta,
-}: Readonly<RuleWithMeta<TOptions, TMessageIds>>): RuleModule<TOptions> {
+>(params: Readonly<RuleWithMeta<TOptions, TMessageIds>>): RuleModule<TOptions> {
+  const { create, defaultOptions, meta } = params;
+
   return {
     create: ((
       context: Readonly<RuleContext<TMessageIds, TOptions>>,
     ): RuleListener => {
-      const optionsWithDefault = context.options.map((options, index) => {
-        return Object.assign(
-          {},
-          defaultOptions[index] as object,
-          options as object,
-        );
-      }) as unknown as TOptions;
+      const optionsWithDefault = context.options.map((options, index) =>
+        Object.assign({}, defaultOptions[index] as object, options as object),
+      ) as unknown as TOptions;
 
       return create(context, optionsWithDefault);
     }) as any,
