@@ -76,7 +76,7 @@ function createRule<
       return create(context, optionsWithDefault);
     }) as any,
     defaultOptions,
-    meta,
+    meta: meta as any,
   };
 }
 
