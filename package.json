@@ -10,19 +10,19 @@
     "gen:docs": "tsx scripts/gen-docs.ts"
   },
   "devDependencies": {
-    "@types/node": "^22.14.1",
-    "@typescript-eslint/parser": "^8.31.0",
-    "@typescript-eslint/typescript-estree": "^8.31.0",
-    "@typescript-eslint/utils": "^8.31.0",
+    "@types/node": "^22.17.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "@typescript-eslint/typescript-estree": "^8.38.0",
+    "@typescript-eslint/utils": "^8.38.0",
     "@ximagine/eslint-config": "npm:@jsr/ximagine__eslint-config@^0.2.2",
-    "es-toolkit": "^1.35.0",
-    "eslint": "^9.25.0",
-    "eslint-vitest-rule-tester": "^2.2.0",
-    "prettier": "^3.5.3",
-    "typescript": "~5.8.3",
-    "vitest": "^3.1.2"
+    "es-toolkit": "^1.39.8",
+    "eslint": "^9.32.0",
+    "eslint-vitest-rule-tester": "^2.2.1",
+    "prettier": "^3.6.2",
+    "typescript": "~5.9.2",
+    "vitest": "^3.2.4"
   },
   "peerDependencies": {
-    "eslint": "^9.25.0"
+    "eslint": "^9.32.0"
   }
 }
