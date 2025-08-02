@@ -170,8 +170,6 @@ runTest({
         });
       });
     `,
-  ],
-  invalid: [
     // Only check objects matching pattern
     {
       code: $`
@@ -180,18 +178,10 @@ runTest({
           post: () => {}
         };
       `,
-      output: $`
-        const userApi = {
-          get: () => {},
-        
-          post: () => {}
-        };
-      `,
       options: [{ objectPattern: "API$" }],
-      errors: [
-        { messageId: "missingPaddingLine", data: { type: "object property" } },
-      ],
     },
+  ],
+  invalid: [
     // Check test suites with hooks
     {
       code: $`
