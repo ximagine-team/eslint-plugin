@@ -30,6 +30,17 @@ runTest({
        */
       const state = {} as State;
     `,
+    // Const assertions should not be reported
+    "const config = {} as const;",
+    "const user = { name: 'John', role: 'admin' } as const;",
+    "const settings = { theme: 'dark', fontSize: 16 } as const;",
+    $`
+      const ROUTES = {
+        HOME: "/",
+        ABOUT: "/about",
+        CONTACT: "/contact",
+      } as const;
+    `,
   ],
   invalid: [
     {
