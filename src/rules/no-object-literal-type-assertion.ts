@@ -29,10 +29,20 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
       return node.type === TSESTree.AST_NODE_TYPES.ObjectExpression;
     }
 
+    function isConstAssertion(node: TSESTree.TSAsExpression): boolean {
+      return (
+        node.typeAnnotation.type === TSESTree.AST_NODE_TYPES.TSTypeReference &&
+        node.typeAnnotation.typeName.type ===
+          TSESTree.AST_NODE_TYPES.Identifier &&
+        node.typeAnnotation.typeName.name === "const"
+      );
+    }
+
     return {
       TSAsExpression(node) {
         if (
           isObjectLiteral(node.expression) &&
+          !isConstAssertion(node) &&
           !hasCommentAbove(node, context.sourceCode)
         ) {
           context.report({
