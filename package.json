@@ -16,13 +16,13 @@
     "@typescript-eslint/utils": "^8.38.0",
     "@ximagine/eslint-config": "npm:@jsr/ximagine__eslint-config@^0.2.2",
     "es-toolkit": "^1.39.8",
-    "eslint": "^9.32.0",
+    "eslint": "^9.36.0",
     "eslint-vitest-rule-tester": "^2.2.1",
     "prettier": "^3.6.2",
     "typescript": "~5.9.2",
     "vitest": "^3.2.4"
   },
   "peerDependencies": {
-    "eslint": "^9.32.0"
+    "eslint": "^9.36.0"
   }
 }
