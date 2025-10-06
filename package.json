@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.17.0",
-    "@typescript-eslint/parser": "^8.38.0",
+    "@typescript-eslint/parser": "^8.45.0",
     "@typescript-eslint/typescript-estree": "^8.38.0",
     "@typescript-eslint/utils": "^8.38.0",
     "@ximagine/eslint-config": "npm:@jsr/ximagine__eslint-config@^0.2.2",
