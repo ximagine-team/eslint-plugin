@@ -86,9 +86,7 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
       for (let i = 0; i < items.length - 1; i++) {
         const currentItem = items[i];
         const nextItem = items[i + 1];
-        const linesBetween =
-          sourceCode.getLocFromIndex(nextItem.range[0]).line -
-          sourceCode.getLocFromIndex(currentItem.range[1]).line;
+        const linesBetween = nextItem.loc.start.line - currentItem.loc.end.line;
 
         if (linesBetween === 1) {
           context.report({
@@ -100,18 +98,14 @@ const rule: RuleModule<Options> = createEslintRule<Options, MessageIds>({
             messageId: "missingPaddingLine",
             data: { type },
             fix(fixer) {
-              const textBetween = sourceCode
-                .getText()
-                .slice(currentItem.range[1], nextItem.range[0]);
+              const insertionPoint = sourceCode.getIndexFromLoc({
+                line: nextItem.loc.start.line,
+                column: 0,
+              });
 
-              const match = /\n(\s*)/.exec(textBetween);
-              const indentation = match ? match[1] : "  ";
-
-              const newText = `${textBetween.trim()}\n\n${indentation}`;
-
-              return fixer.replaceTextRange(
-                [currentItem.range[1], nextItem.range[0]],
-                newText,
+              return fixer.insertTextBeforeRange(
+                [insertionPoint, insertionPoint],
+                "\n",
               );
             },
           });
