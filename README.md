@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-pnpm i -D jsr:@ximagine/eslint-plugin
+pnpm add -D jsr:@ximagine/eslint-plugin
 ```
 
 ## Usage
